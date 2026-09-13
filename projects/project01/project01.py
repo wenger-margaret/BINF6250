@@ -1,43 +1,28 @@
 #!/usr/bin/env python
 from pprint import pprint
-from symbol import continue_stmt
 
 
 # Modify this function signature and fill in the details
 def parse_line(line: str):
-    # splits line by tabs, takes last item (all the info starting with ALLELEID)
-    new_line = line.rstrip().split('\t')[-1]
-    # split new_line by ;, list
-    gene_info = new_line.split(';')
 
-    # TODO: how to find AF_EXAC (not is same place in each list)
-    if "AF_EXAC" in gene_info:
-        pos = gene_info.index('AF_EXAC')
-        AFC_EXAC = gene_info[pos]
-        print(AFC_EXAC)
-    # TODO: find CLNDN
-    #CLNDN = gene_info.find('CLNDN')
-    #if CLNDN != -1:
-
-    # initialize empty list to add rare genes to
-    #rare_genes = []
-    #if AF_EXAC < 0.0001:
-     #   if CLNDN == "not_specified" or CLNDN == "not_provided":
-      #      continue
-      #  else:
-      #      rare_genes.append(CLNDN)
-
-    print(gene_info)
+    pass
 
 
 # Modify this function signature and fill in the details
 def read_file(file: str):
-    with open(file) as f:
+    tally = {} # Dictionary initialization for counting diseases
+    with open(file) as f: # open the file
         for line in f:
             if (line.startswith("#")): continue  # filters out metadata lines
-            #print(line)
-            # pass to parse_line to extract needed data
-            parse_line(line)
+                continue
+            diseases = parse_line(line) # List of diseases
+
+            for disease in diseases: # Counter loop for each disease in list
+                if disease in tally:
+                    tally[disease] += 1
+                else:
+                    tally[disease] = 1
+    return tally         
 
 
 
