@@ -2,25 +2,51 @@
 from pprint import pprint
 
 
-# Modify this function signature and fill in the details
+
 def parse_line(line: str):
+    
+    info = line.split("\t")[7]
 
-    pass
+    # Create a dictionary to hold the key-value pairs from the INFO field
+    info_dict = {}
+    for pair in info.split(";"):
+        key, value = pair.split("=")
+        info_dict[key] = value
+    
+    # Check if the "AF_EXAC" key is present in the info_dict
+    if "AF_EXAC" not in info_dict:
+        return []
+    # Check if the Value of "AF_EXAC" is greater than or equal to 0.0001
+    if float(info_dict["AF_EXAC"]) >= 0.0001:
+        return []   
+    
+    # Create a list of diseases from the "CLNDN" key in the info_dict
+    diseases = info_dict["CLNDN"].split("|")
+
+    # Create a filtered list of diseases
+    filtered_diseases = []
+    for disease in diseases:
+        if disease != "not_provided" and disease != "not_specified":
+            filtered_diseases.append(disease)
+    
+    return filtered_diseases
 
 
-# Modify this function signature and fill in the details
+
+
 def read_file(file: str):
-    tally = {} # Dictionary initialization for counting diseases
-    with open(file) as f: # open the file
+    # Dictionary initialization for counting diseases
+    tally = {} 
+    # open the file
+    with open(file) as f: 
         for line in f:
-            if (line.startswith("#")): continue  # filters out metadata lines
+            if (line.startswith("#")):  # filters out metadata lines
                 continue
             diseases = parse_line(line) # List of diseases
 
             for disease in diseases: # Counter loop for each disease in list
                 if disease in tally:
                     tally[disease] += 1
-                else:
                     tally[disease] = 1
     return tally         
 
