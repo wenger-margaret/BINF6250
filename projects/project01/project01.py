@@ -32,8 +32,6 @@ def parse_line(line: str):
     return filtered_diseases
 
 
-
-
 def read_file(file: str):
     # Dictionary initialization for counting diseases
     tally = {} 
@@ -47,6 +45,7 @@ def read_file(file: str):
             for disease in diseases: # Counter loop for each disease in list
                 if disease in tally:
                     tally[disease] += 1
+                else:
                     tally[disease] = 1
     return tally         
 
