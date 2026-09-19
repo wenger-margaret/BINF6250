@@ -1,1 +1,73 @@
+# Introduction
+This project parses a VCF (Variant Call Format) file — clinvar_20190923_short.vcf — to identify rare genetic variants 
+and tally the diseases associated with them. VCF files are a dense, plain-text format widely used in bioinformatics to 
+store variant data, and this project focuses on building the string-parsing skills needed to extract meaningful 
+information from them.
 
+# Pseudocode
+
+```
+parse_line function:
+1. take in string (line from .vcf file)
+2. splice line by ";"
+3. use AFC_EXAC to find rarity
+    - if AF_EXAC not present, skip the line
+4. if AFC_EXAC < 0.0001
+    - if CLNDN "not spcified" or "not_provided" --> skip
+    - add CLNDN of that line to a list
+5. if AFC_EXAC >= 0.0001 return an empty list
+
+read_file function:
+1. take in string (name of file)
+2. open the file
+3. read lines one at a time
+4. filter out unnecessary lines (##INFO and #CRHOME)
+5. send to parse_line (to get needed data - AF_EXAC)
+6. turn results from parse line into a dictionary
+7. count the number ot times a specific disease is found
+    - using CLNDN
+8. return dictionary
+9. print results
+```
+
+# Successes
+**File Input and Output:**
+- Reading in text files line by line as opposed to all at once, to avoid potential crashes if
+the file was too large 
+
+**String Parsing:** 
+- Extracting key-value pairs from text fields
+- Splitting strings on delimiters (/t, ;, =)
+- Handling missing data (ex: not_provided, not_specified)
+
+**Conditional Logic:**
+- Numeric thresholds to classify data as rare or not rare (AFC_EXAC < 0.0001)
+
+**Function Design:**
+- Creating functions to be resued for distict data filtering and handling
+
+**Collaboration:**
+- Working with GitHub by forking repos and creating working branches
+- Merging pull requests and keeping our files conflict free
+
+# Struggles
+**GitHub:** Figuring out cloning the group leader's repo and committing to the correct PR branch was something we spent time on, working
+to make sure we could work collaboratively and preserve each others work.
+
+# Personal Reflections
+## Group Leader
+Maggie - I took time to relearn the interworkings of GitHub, and learning about pull requests and how to accept and
+modify changes committed by others. One obstacle that I (and the other group members) worked through was where in the 
+code to transfer the string into a dictionary, so that we could search through the key-value pairs to find the value for 
+AFC_EXAC. We also spent time helping each other work through issues with forking my GitHub repo and committing to the 
+PR branch.
+
+## Other member
+Other members' reflections on the project
+
+Ahmed Salman - This project helped me learn how we are expected to use Github in this class and in the future. I do not have much experience with Github from my previous classes and this is valuable experience for me. Also, getting my programming skills sharpened again after a while of no programming will get me ready. Me and my group met together to understand the assignment better. Some of us did not have a clear idea of what the final dictionary was supposed to look like and we all worked together to understand that and create a plan. Other than that we figured out how to connect Git to our respective IDEs so that we can work more smoothly through the assignment.
+
+Dhaivat Trivedi - It is my first time working with a team on Github and so far I have a fairly rough understanding on how this will be working out. The team really helped me out with the aspect on how to use Github. The teams chat and proactive responses from members made things easy, I was initially confused that parse_line was returning a dictionary but instead it was list of diseases. This assignment helped me gain confidence in coding with python again as we dealt with an important fundamental that is parsing of data in Bioinformatics. I would say I still ned to have more of practice git commands to fully understand how Github works.
+
+# Generative AI Appendix
+Generative AI was not used for this assignment.
