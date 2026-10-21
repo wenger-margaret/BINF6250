@@ -311,7 +311,7 @@ It is really interesting to view the differences in alignment. As we had mention
 
 **Reversal of strands:** We also had to print out our aligned sequences to realize that they were returning in reverse order. This was also an easy fix, by using `aligned_seq1 = aligned_seq1[::-1]` and `aligned_seq2 = aligned_seq2[::-1]`
 
-**Numpy Broadcasting**: Due to a time constraint, we were unable to implement the broadcasting function in Numpy. From our understanding this function would "arrays with different shapes during arithmetic operations" as said from the Numpy manual. We learned that this function can be helpful in algorithm implementation, but also has its constraints as well (e.g. inefficient use of memory that can slow computation). 
+**Numpy Broadcasting**: Due to a time constraint, we were unable to implement the broadcasting function in Numpy. From our understanding this function would "arrays with different shapes during arithmetic operations" as said from the Numpy manual. We learned that this function can be helpful in algorithm implementation, but also has its constraints as well (e.g. inefficient use of memory that can slow computation). This could potentially replace our helper functions that we defined at the top of our code, but did not have enough time to really play with this.
 
 # Personal Reflections
 ## Group Leader: Maggie Wenger
