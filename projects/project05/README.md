@@ -321,6 +321,7 @@ Something I would have like to implement if we had more time would be the use of
 
 ## Other member
 Other members' reflections on the project
+Abby - I really enjoyed this project, i feel like it allowed me to slow down after the past few weeks and really focus on the more meticulous parts of my problem solving process. The methodology made sense and having to dig deeper into the repercussions of biological aspects was also very interesting for this project. 
 
 ## Other member: Kailey Solorzano
 
